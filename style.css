@@ -9,7 +9,14 @@ body {
 	top: 30%;
 }
 
-h1 {
+h1 { /* #date */
 	text-align: center;
 	font-size: 70px;
+	margin-bottom: 10px;
+}
+
+h2 { /* #clock */
+	text-align: center;
+	font-size: 50px;
+	margin-top: 10px;
 }
