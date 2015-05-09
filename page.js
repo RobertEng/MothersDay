@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	month[9] = "October";
 	month[10] = "November";
 	month[11] = "December";
-	var disstr = weekday[d.getDay()] + ", ";
+	var disstr = weekday[d.getDay()] + "<br>";
 	disstr += month[d.getMonth()] + " " + d.getDate() + ", ";
 	disstr += d.getFullYear();
 
