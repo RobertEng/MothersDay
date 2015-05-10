@@ -4,8 +4,8 @@
   var NUM_IMAGES_RENDER = 6;
 
   document.addEventListener("DOMContentLoaded", function() {
-    renderBackground();
-    // renderImages(document.getElementById("container"));
+    renderBackground(new Date());
+    renderImages(document.getElementById("quilt"));
 
     // Update clock per second
     setInterval(function() {
@@ -16,13 +16,18 @@
     renderGreeting(document.getElementById("greeting"), new Date());
   });
 
-  function renderBackground() {
-    imageIndex = Math.floor(Math.random() * NUM_IMAGES_TOTAL + 1);
-    src = [IMAGE_DIRECTORY, "/", imageIndex, ".jpg"].join("");
+  function renderBackground(dateObject) {
+    var date = dateObject.getDate();
+    var colorList = ["#fffff0", "#f0e68c", "#e6e6fa", "#fff0f5", "#fffacd",
+                     "#add8e6", "#f08080", "#e0ffff", "#fafad2", "#90ee90",
+                     "#ffb6c1", "#ffa07a", "#20b2aa", "#87cefa", "#ffe4e1"]
+    document.body.style.backgroundColor = colorList[date % colorList.length];
 
+    // imageIndex = Math.floor(Math.random() * NUM_IMAGES_TOTAL + 1);
+    // src = [IMAGE_DIRECTORY, "/", imageIndex, ".jpg"].join("");
 
-    document.body.style.background = ["#ffffff url(", src, ") no-repeat center center"].join("");
-    document.body.style.backgroundSize = "cover";
+    // document.body.style.background = ["#ffffff url(", src, ") no-repeat center center"].join("");
+    // document.body.style.backgroundSize = "cover";
   }
 
   function renderImages(element, num) {
@@ -40,7 +45,9 @@
     //   }
     // }
 
-    // new Masonry(element, { itemSelector: '.thumbnail' });
+    new Masonry(element, {
+      itemSelector: '.thumbnail'
+    });
   }
 
 	function renderClock(element, dateObject) {
@@ -55,17 +62,17 @@
 	}
 
 	function renderGreeting(element, dateObject) {
-		var mother = ["Mo-ver", "Mommy", "Mo-ber"]
+		var name = ["Moh-ver", "Mommy", "Moh-ber"]
 
 		var date = dateObject.getDate();
 		var hours = dateObject.getHours();
 
 		if (hours >= 3 && hours < 11) {
-			var greeting = "Good Morning, " + mother[date % mother.length];
+			var greeting = "Good morning, " + name[date % name.length] + ".";
 		} else if (hours >= 11 && hours < 19) {
-			var greeting = "Good Afternoon, " + mother[date % mother.length];
+			var greeting = "Good afternoon, " + name[date % name.length] + ".";
 		} else {
-			var greeting = "Good Evening, " + mother[date % mother.length];
+			var greeting = "Good evening, " + name[date % name.length] + ".";
 		}
 
 		element.innerHTML = greeting;
