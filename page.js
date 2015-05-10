@@ -6,10 +6,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// Get just the month-date. No leading zeros. Photos must be in format
 	// month-date.png to get referenced this way.
-	var str = d.getMonth() + 1 + "-" + d.getDate() + ".png";
-	console.log("str = " + str);
+	// var str = d.getMonth() + 1 + "-" + d.getDate() + ".png";
+	// console.log("str = " + str);
 
-	document.body.style.background = "#ffffff url("+str+") center center";
+	// Alternatively, if the photos are by date, do random selection from the total number of photos.
+	var NUMPHOTOS = 22;
+	picnum = Math.floor(Math.random() * NUMPHOTOS + 1);
+	str = "/pics/" + picnum + ".jpg";
+
+
+	document.body.style.background = "#ffffff url("+str+") no-repeat center center";
+	document.body.style.backgroundSize = "cover";
 
 	// Make the date that gets displayed on the tab
 	var weekday = new Array(7);
@@ -41,6 +48,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 	// Add the time when tab opens
+	updateClock();
+
+
+	// Two options for setInterval (per second or per minute). When switching between the two, be sure
+	// to uncomment and comment the lines close to the end of updateClock
+
+	// Update it every second
+	// setInterval(function() {
+	// 	updateClock();
+	// }, 1000);
+
+	// Update it every minute
+	setInterval(function() {
+		updateClock();
+	}, 60000);
+
+});
+
+// This function is from online somewhere
+function updateClock() {
 	var currentTime = new Date ();
 	var currentHours = currentTime.getHours();
 	var currentMinutes = currentTime.getMinutes();
@@ -55,40 +82,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	// Convert an hours component of "0" to "12"
 	currentHours = (currentHours == 0) ? 12 : currentHours;
 	// Compose the string for display
-	var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+	// Two options here. one with seconds, one without. Be sure to change the setInterval time above when
+	// switching between the two. 
+	// var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+	var currentTimeString = currentHours + ":" + currentMinutes + " " + timeOfDay;
+
 	// Update the time display
 	document.getElementById("clock").firstChild.nodeValue = currentTimeString;
-
-
-
-	// Poop chrome extensions don't allow for javascript functions in setInterval.
-	// The function in setInterval is same as above.
-	// This setInterval updates every second
-	setInterval(function() {
-		var currentTime = new Date ();
-		var currentHours = currentTime.getHours();
-		var currentMinutes = currentTime.getMinutes();
-		var currentSeconds = currentTime.getSeconds();
-		// Pad the minutes and seconds with leading zeros, if required
-		currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-		currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-		// Choose either "AM" or "PM" as appropriate
-		var timeOfDay = (currentHours < 12) ? "AM" : "PM";
-		// Convert the hours component to 12-hour format if needed
-		currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
-		// Convert an hours component of "0" to "12"
-		currentHours = (currentHours == 0) ? 12 : currentHours;
-		// Compose the string for display
-		var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
-		// Update the time display
-		document.getElementById("clock").firstChild.nodeValue = currentTimeString;
-	}, 1000);
-
-
-});
-
-// This function is from online somewhere
-
+}
 
 
     // chrome.tabs.onCreated.addListener(function(Tab tab) {
