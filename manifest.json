@@ -1,16 +1,13 @@
 {
-    "manifest_version": 2,
-
-    "name": "Happy Mother's Day!",
-    "description": "Launches apps, the good way!",
-    "version": "0.0.0.1",
-    "permissions" : ["management"],
-    "chrome_url_overrides" : {
-        "newtab": "newtab.html"
-    }
-    
-
- }
+  "manifest_version": 2,
+  "name": "Happy Mother's Day 2015",
+  "description": "Landing page",
+  "version": "0.0.0.1",
+  "permissions" : ["management"],
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  }
+}
 
 
 
