@@ -5,7 +5,7 @@
 
   document.addEventListener("DOMContentLoaded", function() {
     renderBackground(new Date());
-    renderImages(document.getElementById("quilt"));
+    // renderImages(document.getElementById("quilt"));
 
     // Update clock per second
     setInterval(function() {
@@ -31,8 +31,7 @@
   }
 
   function renderImages(element, num) {
-    var used = [];
-
+    // var used = [];
     // while (used.length < NUM_IMAGES_RENDER) {
     //   var imageIndex = Math.floor(Math.random() * NUM_IMAGES_TOTAL + 1);
     //   if (used.indexOf(imageIndex) == -1) {
@@ -45,8 +44,10 @@
     //   }
     // }
 
-    new Masonry(element, {
-      itemSelector: '.thumbnail'
+    element.imagesLoaded(element, function() {
+      new Masonry(element, {
+        itemSelector: '.thumbnail'
+      });
     });
   }
 
