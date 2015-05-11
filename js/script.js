@@ -14,6 +14,13 @@
 
     renderClock(document.getElementById("clock"), new Date());
     renderGreeting(document.getElementById("greeting"), new Date());
+
+    // Render thumbnails with Masonry
+    imagesLoaded(element, function() {
+      new Masonry(element, {
+        itemSelector: '.thumbnail'
+      });
+    });
   });
 
   function renderBackground(dateObject) {
@@ -43,12 +50,6 @@
     //     element.appendChild(img);
     //   }
     // }
-
-    element.imagesLoaded(element, function() {
-      new Masonry(element, {
-        itemSelector: '.thumbnail'
-      });
-    });
   }
 
 	function renderClock(element, dateObject) {
